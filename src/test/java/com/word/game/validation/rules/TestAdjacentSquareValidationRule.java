@@ -12,8 +12,7 @@ import com.word.game.model.Word;
 public class TestAdjacentSquareValidationRule {
 	
 	public static void main(String[] args) {		
-	}
-	
+	}	
 	
 	@Test
 	public void testValidSudoku4x4() {

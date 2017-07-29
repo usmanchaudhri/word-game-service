@@ -9,10 +9,10 @@ import java.util.Map;
  * */
 public class ScoreCalculationService {
 
-	public static Map<Integer, Integer> weightLookupMap;
+	public static Map<Integer, Integer> weightLookupMap = new HashMap<Integer, Integer>();
 	static {
 		weightLookupMap = new HashMap<Integer, Integer>();		
-		weightLookupMap.put(2, 1);
+		weightLookupMap.put(3, 1);
 		weightLookupMap.put(4, 2);
 		weightLookupMap.put(5, 3);
 		weightLookupMap.put(6, 4);
@@ -22,8 +22,8 @@ public class ScoreCalculationService {
 	/**
 	 * NOTE - weight return will be zero if the word size is less than 3 letters
 	 **/
-	public static Integer calculate(String word) {
-		int wordSize = word.length();	
+	public static int calculate(String word) {
+		Integer wordSize = word.length();	
 		int weight = 0;
 		if(wordSize >= 8) {
 			weight = 6;

@@ -51,7 +51,9 @@ public class AdjacentSquareValidationRule extends ValidationRule {
 					path.add(new Point(row, col));
 					
 					List<Point> result = search(gameBoard, startPos, s.substring(1), path);
-					allpaths.add(result);
+					if(result.size() == word.getWord().length()) {
+						allpaths.add(result);
+					}
 				}
 			}
 		}

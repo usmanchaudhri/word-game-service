@@ -20,7 +20,7 @@ public class DictionaryValidationRule extends ValidationRule {
 	
 	@Override
 	public boolean isValid(Word word) {		
-		String w = word.getWord();
+		String w = word.getWord().toUpperCase();
 		if(dictionary.getWords().contains(w)) {
 			return true;
 		}		

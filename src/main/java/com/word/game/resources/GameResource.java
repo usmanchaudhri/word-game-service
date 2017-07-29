@@ -83,13 +83,13 @@ public class GameResource {
 		
 		// calculate word score
 		int wordScore = ScoreCalculationService.calculate(word.getWord());
-		
 		word.setScore(wordScore);
 		word.setGame(persistedGame);		
-		int gameScore = persistedGame.getScore();
-		persistedGame.setScore( (gameScore+wordScore) );
-		
+
+		int gameScore = persistedGame.getScore();		
+		persistedGame.setScore( (gameScore+wordScore) );		
 		persistedGame.getWords().add(word);		
+		
 		gameDao.create(persistedGame);		
 		return Response.status(Response.Status.OK).entity(word).build();
 	}
