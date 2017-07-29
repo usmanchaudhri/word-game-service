@@ -1,0 +1,55 @@
+template: Hello, %s!
+
+defaultName: ${DW_DEFAULT_NAME:-Stranger}
+
+database:
+  driverClass: org.postgresql.Driver
+  user: njcyxzlnmtiyvb
+  password: pXMOBYt7CFf_g9gRYI3_Rs5CvX
+  url: jdbc:postgresql://localhost:5432/ddgv02lm6vdscl
+
+server:
+  type: simple
+  applicationContextPath: /api/v1
+  #adminContextPath: /admin # If you plan to use an admin path, you'll need to also use non-root app path
+  connector:
+    type: http
+    port: 8080
+
+# Jersey client properties
+jerseyClient:
+  minThreads: 1
+  maxThreads: 128
+  workQueueSize: 8
+  gzipEnabled: true
+  gzipEnabledForRequests: true
+  chunkedEncodingEnabled: true
+ 
+ # Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+
+    # Sets the level for 'com.example.app' to DEBUG.
+    com.word.game: DEBUG
+
+    # Redirects SQL logs to a separate file
+    org.hibernate.SQL: DEBUG  
+
+  appenders:
+    - type: console
+
+
+# set to yes if running locally 
+localdev: yes
+     
+
+logging:
+  level: INFO
+  loggers:
+    io.dropwizard: DEBUG
+
