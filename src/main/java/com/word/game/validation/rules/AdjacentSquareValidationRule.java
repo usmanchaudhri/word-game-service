@@ -39,6 +39,10 @@ public class AdjacentSquareValidationRule extends ValidationRule {
 	 **/
 	@Override
 	public boolean isValid(Word word) {		
+		if(word == null || word.getWord().isEmpty()) {
+			return false;
+		}
+		
 		int n = gameBoard.length;
 		int m = gameBoard[0].length;
 		List<List<Point>> allpaths = new ArrayList<List<Point>>();
@@ -93,7 +97,7 @@ public class AdjacentSquareValidationRule extends ValidationRule {
 			position.col = col;
 		} else if((row+1 < size) && grid[row+1][col] == current) {
 			position.row = row+1;
-			position.col = col-1;
+			position.col = col;
 		} else if((col-1 >= 0) && grid[row][col-1] == current) {
 			position.row = row;
 			position.col = col-1;

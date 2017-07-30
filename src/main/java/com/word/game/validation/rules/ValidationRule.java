@@ -25,7 +25,7 @@ public abstract class ValidationRule {
 	public void init() {
 		int size = baord.size();				
 		for(int i=0; i<size; i++) {
-			String word = baord.get(i);			
+			String word = baord. get(i);			
 			for(int j=0; j<size; j++) {
 				 gameBoard[i][j] = word.charAt(j);
 			}

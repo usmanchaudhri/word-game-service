@@ -15,7 +15,9 @@ public class GameDao extends AbstractDAO<Game> {
 	}	
 	
 	public Game findById(Long id) {
-		return get(id);
+		Game game = get(id);
+		initialize(game.getBoard());
+		return game;
 	}
 
 }

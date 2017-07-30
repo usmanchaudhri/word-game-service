@@ -33,6 +33,5 @@ public class HttpBadRequestException implements ExceptionMapper<WebApplicationEx
 				} }).build();
 		return response;
 	}
-	
 
 }

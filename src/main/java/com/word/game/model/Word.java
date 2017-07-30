@@ -26,19 +26,21 @@ public class Word {
 	@JoinColumn(name="game_id", referencedColumnName="game_id", nullable = false)
 	private Game game;
 
+	public Long getId() {
+		return id;
+	}
+
+	// two words are equal if there "word" is equal
 	@Override
 	public boolean equals(Object o) {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;
 		
 		Word obj = (Word) o;
-		if(id    != null ? !id.equals(obj.id) : obj.id != null) return false;
 		if(word  != null ? !word.equals(obj.word) : obj.word != null) return false;
-		if(score != null ? !score.equals(obj.score) : obj.score != null) return false;
-
 		return true;
 	}
-	
+
 	/**
 	 *	Overriding hashcode
 	 * 
@@ -49,14 +51,9 @@ public class Word {
 	public int hashCode() {
 		int result = id != null ? id.hashCode() : 0;
 		result = 31 * result + (word != null ? word.hashCode() : 0);
-		result = 31 * result + (score != null ? score.hashCode() : 0);
 		return result;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-
 	@JsonIgnore	
 	public void setId(Long id) {
 		this.id = id;

@@ -1,7 +1,10 @@
 package com.word.game.resources;
 
 import io.dropwizard.hibernate.UnitOfWork;
+
 import java.util.List;
+import java.util.Set;
+
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,7 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.client.Entity;
+
 import com.codahale.metrics.annotation.Timed;
 import com.word.game.dao.GameDao;
 import com.word.game.init.Dictionary;
@@ -20,6 +23,7 @@ import com.word.game.model.Game;
 import com.word.game.model.Word;
 import com.word.game.services.ScoreCalculationService;
 import com.word.game.validation.rules.AdjacentSquareValidationRule;
+import com.word.game.validation.rules.ComparisonValidationRule;
 import com.word.game.validation.rules.DictionaryValidationRule;
 import com.word.game.validation.rules.ValidationRule;
 
@@ -61,7 +65,9 @@ public class GameResource {
 		Game persistedGame = gameDao.findById(game_id);
 		List<String> persistedBoard = persistedGame.getBoard();
 		
-		if(persistedGame.getWords().contains(word.getWord())) {
+		// check if the new word already exists for that game
+		ComparisonValidationRule compRule = new ComparisonValidationRule(persistedGame.getWords());
+		if(compRule.isValid(word)) {
 			return Response.status(Response.Status.CONFLICT).entity("Word is a duplicate").build();
 		}
 		

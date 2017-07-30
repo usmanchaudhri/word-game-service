@@ -33,7 +33,7 @@ public class Game {
 	@Column(name = "game_id", nullable = false, unique = true) private Long id;
 	@Column(name = "score", nullable = true) private Integer score;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "game_board", joinColumns = @JoinColumn(name = "game_id"))
 	@Column(name="DICE")
 	private List<String> board;
