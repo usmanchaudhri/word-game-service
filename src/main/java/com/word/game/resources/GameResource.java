@@ -47,6 +47,10 @@ public class GameResource {
 	@UnitOfWork
 	@Timed	
 	public Response initGame(@Valid Game game) {
+		if(game == null) {
+			game = new Game();
+		}
+		
 		List<String> board = Board.shuffleDices();
 		game.setBoard(board);
 		game.setScore(0);

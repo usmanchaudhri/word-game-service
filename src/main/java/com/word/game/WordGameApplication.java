@@ -9,13 +9,21 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 
+
+
+
+
 //import io.dropwizard.assets.AssetsBundle;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
 import javax.ws.rs.ext.ExceptionMapper;
 
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.slf4j.Logger;
@@ -75,6 +83,17 @@ public class WordGameApplication extends Application<WordGameConfiguration> {
     public void run(final WordGameConfiguration configuration,
                     final Environment environment) {
         environment.jersey().register(RolesAllowedDynamicFeature.class);        
+
+        // Allows Cross-origin resource sharing (CORS)
+        // Enable CORS headers
+        final FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+//        cors.setInitParameter("Access-Control-Allow-Origin", "*");
+        cors.setInitParameter("allowCredentials", "true");
+        cors.setInitParameter("allowedOrigins", "*");
+        cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin,Authorization");
+        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+        // Enable CORS headers
         
 		final GameDao gameDao = new GameDao(hibernateBundle.getSessionFactory());
 		final WordDao wordDao = new WordDao(hibernateBundle.getSessionFactory());
@@ -84,10 +103,6 @@ public class WordGameApplication extends Application<WordGameConfiguration> {
         InitDataLoaderService dataLoader = new InitDataLoaderService(dictionary);
         dataLoader.init();          
 		
-        
-        // validation rules
-        
-        
         // explicitly register exception mapper
         removeDefaultExceptionMappers(Boolean.TRUE, environment);
 
