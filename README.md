@@ -45,6 +45,7 @@ API
 CORS
 ---
 CORS is enabled for the following: 
+
 ``
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Content-Type
