@@ -45,9 +45,10 @@ API
 CORS
 ---
 CORS is enabled for the following: 
+``
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Headers: Content-Type
-
+``
 Health Check
 ---
 To see your applications health enter url `http://localhost:8081/healthcheck`
