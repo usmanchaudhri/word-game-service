@@ -23,12 +23,13 @@ How to start the WordGame application
 1. Update the config.yml file with the DB configuration, make sure you create the schema in DB first. Below is a sample
 configuration to connect to a postgresql DB.
 
+```
 database:
   driverClass: org.postgresql.Driver
   user: username
   password: password
   url: jdbc:postgresql://localhost:5432/{database_schema_name}
-
+```
 
 1. Run migration to create tables in the DB with `java -jar target/word-game-service-1.0-SNAPSHOT.jar db migrate config.yml`
 1. Start application with `java -jar target/word-game-service-1.0-SNAPSHOT.jar server config.yml`
