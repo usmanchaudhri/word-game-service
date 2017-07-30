@@ -12,8 +12,9 @@ The following assumptions were taken into consideration.
 
 Build Info
 ---
-This project is build and compiled using Java 1.7. This project is using Dropwizard Java framework which has 
-an embedded Jersey server. 
+This project is build and compiled using Java 1.7. This project is using Dropwizard (0.8.2) Java framework which has 
+an embedded Jersey server. The embedded jersey starts when the `java -jar` command is supplied on the fat JAR. 
+The far JAR has all the third party libraries with-in and is self-contained.
 
 How to start the WordGame application
 ---
